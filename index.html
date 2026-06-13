@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamFlix</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:black;
+    color:white;
+}
+html{
+    scroll-behavior:smooth;
+}
+
+/* TOPO */
+
+header{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    z-index:9999;
+
+    background:rgba(17,17,17,.95);
+
+    backdrop-filter:blur(10px);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 50px;
+}
+body{
+    padding-top:90px;
+}
+
+.logo{
+    color:rgb(255, 238, 0);
+    font-size:35px;
+    font-weight:bold;
+    text-shadow:
+    0 0 5px rgb(233, 250, 2),
+    0 0 10px rgb(255, 230, 0),
+    0 0 20px rgb(175, 172, 2),
+    0 0 30px rgb(104, 105, 5);
+}
+
+nav a{
+    color:rgb(255, 255, 255);
+    text-decoration:none;
+    margin-left:20px;
+    font-size:20px ;
+
+}
+
+nav a:hover{
+    color:red;
+}
+
+/* BANNER */
+
+.banner{
+    position:relative;
+
+    height:75vh;
+    width:100%;
+
+    overflow:hidden;
+
+    background:
+linear-gradient(
+to right,
+rgba(0,0,0,.95) 25%,
+rgba(0,0,0,.75) 40%,
+rgba(0,0,0,.2) 70%,
+rgba(0,0,0,0)
+),
+url("Fotos/The-Devil-Wears-Prada-2-Horizontal-10.jpeg");
+
+    background-size:95%;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:80px;
+}
+.video-banner{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0;
+
+    transition: opacity 2.5s ease-in-out;
+
+    z-index:1;
+
+    pointer-events:none;
+}
+
+.banner:hover .video-banner{
+    opacity:1.0;
+}
+
+.texto-banner h1{
+    font-size:60px;
+    margin-top: 400px;
+}
+
+.texto-banner p{
+    margin:50px 0;
+    font-size:18px;
+}
+
+
+button{
+    background:rgb(255, 254, 254);
+    border:none;
+    color:rgb(7, 5, 5);
+
+    padding:20px 5px;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    margin-top:100px ;
+    
+}
+
+button:hover{
+    background:rgba(223, 222, 222, 0.699);
+}
+
+
+/* CATÁLOGOS */
+
+.top5{
+ padding:40px;
+}
+.top5{
+
+    font-size:30px;
+
+    font-weight:900;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    color:white;
+
+    display:inline-block;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,.12);
+}
+
+.top5::after{
+
+    content:"";
+
+    display:block;
+
+    width:80px;
+
+    height:3px;
+
+    margin-top:8px;
+
+    border-radius:10px;
+
+    background:rgb(255,238,0);
+
+    box-shadow:
+    0 0 10px rgba(255,238,0,.4);
+}
+
+
+
+
+/* CARD TOP 5 */
+
+.cards5{
+   display:flex;
+    gap:30px;
+    overflow-x:auto;
+    margin-bottom:40px;
+    
+}
+.card5{
+    min-width:250px;
+    height:400px;
+    background-color: #070707f6;
+
+    position:relative;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+    opacity:1.0;
+
+    
+}
+.card5 img{
+    width:100%;
+    height:100%;
+    
+
+    object-fit:cover;
+}
+.card5::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    to top,
+    rgba(0,0,0,.25),
+    rgba(0,0,0,.05));
+
+    opacity:1;
+
+    transition:.4s;
+}
+.card5:hover{
+
+    transform:scale(1.08);
+
+    border:2px solid red;
+
+    opacity:1;
+}
+
+.card5:hover::after{
+
+    opacity:.2;
+}
+
+.card5 span{
+    position:absolute;
+
+    bottom:10px;
+    left:10px;
+
+    background:rgba(0, 0, 0, 0.356);
+
+    padding:5px 10px;
+
+    border-radius:5px;
+
+    font-weight:bold;
+}
+
+.card5:hover{
+    transform:scale(1.08);
+
+    border:2px solid rgb(0, 0, 0);
+}
+.card-container{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    margin-left:80px;
+}
+.card-container:hover .numero{
+
+    -webkit-text-stroke:3px rgba(255,255,255,.45);
+
+    transform:scale(1.05);
+}
+
+.numero{
+
+    position:absolute;
+
+    left:-60px;
+
+    bottom:-25px;
+
+    font-size:220px;
+
+    font-family:Impact, sans-serif;
+
+    font-weight:900;
+
+    color:transparent;
+
+    -webkit-text-stroke:3px rgba(255, 255, 255, 0.171);
+
+    z-index:1;
+
+    pointer-events:none;
+
+    transition:.3s;
+}
+
+.card5{
+
+    position:relative;
+
+    z-index:2;
+}
+.cards5::-webkit-scrollbar{
+    display:none;
+}
+.card5{
+
+    min-width:250px;
+
+    height:400px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+    transition:.4s;
+
+    flex-shrink:0;
+}
+
+.card5 img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.overlay5{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.75);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    align-items:flex-start;
+    padding-left: 20px;
+
+    gap:20px;
+
+    padding-bottom:20px;
+
+    opacity:0;
+
+    transition:.4s ease;
+
+    z-index:5;
+}
+
+.card5:hover .overlay5{
+
+    opacity:1;
+}
+
+.overlay5 h3{
+
+    font-size:28px;
+
+    color:white;
+
+    text-align:left;
+
+    transform:translateY(60px);
+}
+
+.play-btn5{
+
+    background:rgb(255, 255, 255);
+
+    color:black;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+/* CARD NORMAL */
+
+.catalogo{
+    padding:40px;
+}
+.cards{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.cards::-webkit-scrollbar{
+    display:none;
+}
+.card{
+
+    min-width:250px;
+
+    width:345px;
+
+    height:220px;
+
+    flex-shrink:0;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:12px;
+
+    transition:.4s;
+}
+
+.card img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    to top,
+    rgba(0,0,0,.25),
+    rgba(0,0,0,.05));
+
+    opacity:1;
+
+    transition:.8s;
+}
+.card:hover{
+
+    transform:scale(1.05);
+
+    border:2px solid red;
+
+    opacity:1;
+}
+.card img{
+
+    transition:.5s ease;
+}
+
+.card:hover img{
+
+    transform:scale(1.08);
+}
+
+.card:hover::after{
+
+    opacity:.2;
+}
+
+.card span{
+    position:absolute;
+
+    bottom:10px;
+    left:10px;
+
+    background:rgba(0, 0, 0, 0.356);
+
+    padding:5px 10px;
+
+    border-radius:5px;
+
+    font-weight:bold;
+}
+
+.card:hover{
+
+    transform:scale(1.08);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.6),
+    0 0 20px rgba(255,255,255,.08);
+}
+.overlay{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:
+    linear-gradient(
+    to top,
+    rgba(0,0,0,.95),
+    rgba(0,0,0,.80),
+    rgba(0,0,0,.20));
+
+    backdrop-filter:blur(2px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    align-items:flex-start;
+
+    padding-left:18px;
+
+    padding-right:18px;
+
+    padding-bottom:20px;
+
+    gap:12px;
+
+    opacity:0;
+
+    transition:.4s ease;
+
+    z-index:5;
+}
+
+.card:hover .overlay{
+
+    opacity:1;
+}
+
+.overlay h3{
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    line-height:1.2;
+
+    text-shadow:
+    0 2px 10px rgba(0,0,0,.9);
+
+    border-left:3px solid rgba(255,255,255,.8);
+
+    padding-left:10px;
+
+    transition:.3s;
+}
+
+.play-btn{
+
+    background:white;
+
+    color:black;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    margin-top:0;
+}
+
+.play-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 5px 15px rgba(255,255,255,.25);
+}
+
+
+/* SCROLL */
+
+.cards::-webkit-scrollbar{
+    height:1px;
+}
+
+.cards::-webkit-scrollbar-thumb{
+    background:rgb(0, 0, 0);
+}
+.cards5::-webkit-scrollbar{
+    height:1px;
+}
+
+.cards5::-webkit-scrollbar-thumb{
+    background:rgb(0, 0, 0);
+}
+
+
+/* FOOTER */
+
+footer{
+    background:#111;
+    text-align:center;
+    padding:25px;
+}
+.texto-banner{
+
+    position:relative;
+
+    z-index:5;
+
+    max-width:700px;
+}
+
+.estreia{
+
+    color:#ffd700;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    font-size:14px;
+}
+
+.titulo-prada{
+
+    margin-top:20px;
+
+    margin-bottom:30px;
+
+    text-transform:uppercase;
+}
+
+.prada-linha1{
+
+    font-size:22px;
+
+    letter-spacing:12px;
+
+    color:#d8d8d8;
+
+    font-weight:300;
+
+    margin-left:8px;
+}
+
+.prada-linha2{
+
+    font-family:"Times New Roman", serif;
+
+    font-size:150px;
+
+    font-weight:bold;
+
+    color:white;
+
+    line-height:.8;
+
+    letter-spacing:5px;
+
+    text-shadow:
+    0 0 15px rgba(255,255,255,.15);
+}
+
+.prada-linha3{
+
+    font-family:"Times New Roman", serif;
+
+    font-size:75px;
+
+    font-weight:bold;
+
+    color:#b30000;
+
+    letter-spacing:15px;
+
+    margin-top:-10px;
+
+    text-shadow:
+    0 0 15px rgba(179,0,0,.4);
+}
+
+.sinopse{
+
+    margin-top:30px;
+
+    font-size:22px;
+
+    line-height:1.6;
+
+    color:#e5e5e5;
+
+    max-width:650px;
+}
+
+.info-filme{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+    font-weight:bold;
+
+    color:#d8d8d8;
+}
+
+.botoes-banner{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:35px;
+}
+
+.btn-play{
+
+    background:white;
+
+    color:black;
+
+    padding:16px 35px;
+
+    font-size:20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.btn-info{
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    padding:16px 35px;
+
+    font-size:20px;
+
+    border:1px solid rgba(255,255,255,.3);
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.btn-info:hover{
+
+    background:rgba(255,255,255,.25);
+}
+.categoria{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    color:white;
+
+    margin-bottom:25px;
+
+    position:relative;
+
+    display:inline-block;
+
+    text-shadow:
+0 0 5px rgba(255, 255, 255, 0.589),
+0 0 12px rgba(255, 255, 255, 0.158);
+}
+
+.categoria::after{
+
+    content:"";
+
+    display:block;
+
+    width:60px;
+
+    height:3px;
+
+    margin-top:8px;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    opacity:.8;
+}
+::-webkit-scrollbar{
+
+    width:12px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.35),
+        rgba(255,255,255,.12)
+    );
+
+    border-radius:30px;
+
+    border:2px solid #050505;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,.1);
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.55),
+        rgba(255,255,255,.25)
+    );
+}
+@media (max-width: 1024px){
+
+    .prada-linha2{
+        font-size: 90px;
+    }
+
+    .prada-linha3{
+        font-size: 45px;
+    }
+
+    .sinopse{
+        font-size: 16px;
+    }
+
+    .banner{
+        padding-left: 30px;
+    }
+
+    .card{
+        width: 200px;
+    }
+
+    .card5{
+        width: 180px;
+    }
+}
+
+@media (max-width: 600px){
+
+    header{
+        padding: 10px 20px;
+    }
+
+    nav a{
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .prada-linha2{
+        font-size: 60px;
+    }
+
+    .prada-linha3{
+        font-size: 30px;
+    }
+
+    .botoes-banner{
+        flex-direction: column;
+    }
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+LUMIER
+</div>
+
+<nav>
+    <a href="#inicio">Início</a>
+    <a href="#top5">Top 5</a>
+    <a href="#filmes">Filmes</a>
+    <a href="#">Ao Vivo</a>
+</nav>
+
+</header>
+
+
+<section class="banner" id="inicio">
+
+<video class="video-banner" loop>
+    <source src="Fotos\videoplayback.mp4" type="video/mp4">
+</video>
+
+<div class="texto-banner">
+
+    <span class="estreia">✨ ESTREIA EXCLUSIVA</span>
+
+    <div class="titulo-prada">
+
+       <div class="prada-linha1">
+        THE DEVIL WEARS
+       </div>
+
+       <div class="prada-linha2">
+        PRADA
+       </div>
+
+       <div class="prada-linha3">
+        II
+    </div>
+
+</div>
+
+    <p class="sinopse">
+        Miranda Priestly está de volta. Em um mundo dominado pelas redes sociais
+        e pela nova geração da moda, antigos rivais e novos desafios colocam
+        novamente a Runway no centro da indústria fashion.
+    </p>
+
+    <div class="info-filme">
+        <span>Comédia</span>
+        <span>•</span>
+        <span>Drama</span>
+        <span>•</span>
+        <span>2026</span>
+    </div>
+
+    <div class="botoes-banner">
+
+        <button class="btn-play">
+            ▶ Assistir Agora
+        </button>
+
+        <button class="btn-info">
+            Mais Informações
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+<script>
+
+const banner = document.querySelector(".banner");
+const video = document.querySelector(".video-banner");
+
+let timer;
+
+banner.addEventListener("mouseenter", () => {
+
+    timer = setTimeout(() => {
+
+        video.currentTime = 0;
+
+        video.play().catch(err => console.log(err));
+
+    }, 2000); // 2000 = 2 segundos
+
+});
+
+banner.addEventListener("mouseleave", () => {
+
+    clearTimeout(timer);
+
+    video.pause();
+
+    video.currentTime = 0;
+
+});
+
+</script>
+
+<section class="top5" id="top5">
+
+<h2 class="top5">
+    TOP 5 DA SEMANA
+</h2>
+
+<div class="cards5">
+
+<div class="card-container">
+
+    <div class="numero">1</div>
+
+<div class="card5">
+    <img src="Fotos\Spider-Noir.2026.webp">
+
+      <div class="overlay5">
+
+        <h3>Spider Noir</h3>
+
+        <button class="play-btn5">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+    <span></span>
+</div>
+</div>
+
+<div class="card-container">
+
+    <div class="numero">2</div>
+
+<div class="card5">
+    <img src="Fotos\Invencievel.webp">
+    <div class="overlay5">
+
+        <h3>Invincible</h3>
+
+        <button class="play-btn5">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+    <span></span>
+</div>
+</div>
+
+<div class="card-container">
+
+    <div class="numero">3</div>
+
+<div class="card5">
+    <img src="Fotos\Resgate.webp">
+    <div class="overlay5">
+
+        <h3>Resgate em Grande Altitude</h3>
+
+        <button class="play-btn5">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+    <span></span>
+</div>
+</div>
+
+<div class="card-container">
+
+    <div class="numero">4</div>
+<div class="card5">
+
+    <img src="Fotos\Theboys.webp">
+    <div class="overlay5">
+
+        <h3>The Boys</h3>
+
+        <button class="play-btn5">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+    <span></span>
+</div>
+</div>
+
+<div class="card-container">
+
+    <div class="numero">5</div>
+
+<div class="card5">
+    <img src="Fotos\wicked-poster.avif">
+    <div class="overlay5">
+
+        <h3>Wicked</h3>
+
+        <button class="play-btn5">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+    <span></span>
+</div>
+</div>
+
+</section>
+
+
+<section class="catalogo" id="filmes">
+
+<h2 class="categoria categoria-terror">
+    FILMES DE TERROR
+</h2>
+
+<div class="cards">
+
+<div class="card">
+    <img src="Fotos\Telefone Preto.jpg">
+    
+    <div class="overlay">
+
+        <h3>Telefone Preto 2</h3>
+
+        <a href="telefone-preto.html" class="play-btn">
+    ▶ Reproduzir
+       </a>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\It.jpg">
+   
+    <div class="overlay">
+
+        <h3>IT</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\smile-2.avif">
+    
+    <div class="overlay">
+
+        <h3>Smile 2</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\Tanl to me.webp">
+    
+    <div class="overlay">
+
+        <h3>Talk to Me</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\the-conjuring-poster-y2bs1yiiscn9qdio.jpg">
+    
+    <div class="overlay">
+
+        <h3>The Conjuring</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+
+</div>
+
+
+<h2 class="categoria categoria-comedia">
+    FILMES DE COMÉDIA
+</h2>
+
+
+<div class="cards">
+
+<div class="card">
+    <img src="Fotos\43-facts-about-the-movie-american-pie-1687880549.jpg">
+    
+    <div class="overlay">
+
+        <h3>American Pie</h3>
+
+        <a href="american-pie.html" class="play-btn">
+    ▶ Reproduzir
+        </a>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\central inteligencie.jpg">
+    <div 
+    class="overlay">
+
+        <h3>Central Intelligence</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\Hangover.jpg">
+    
+    <div class="overlay">
+
+        <h3> The Hangover</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\free-guy.jpg">
+    
+    <div class="overlay">
+
+        <h3>Free Guy</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\WereTheMillers.jpg">
+   
+    <div class="overlay">
+
+        <h3>We're The Millers</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+</div>
+
+
+<h2 class="categoria categoria-acao">
+    FILMES DE AÇÃO
+</h2>
+
+<div class="cards">
+
+<div class="card">
+    <img src="Fotos\John Wick.jpg">
+    
+    <div class="overlay">
+
+        <h3>John Wick Ballerina</h3>
+
+        <a href="john-wick.html" class="play-btn">
+    ▶ Reproduzir
+        </a>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\Top Gun.jpg">
+   
+    <div class="overlay">
+
+        <h3>Top Gun</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\Missao impo.jpg">
+    
+    <div class="overlay">
+
+        <h3> Misson: Impossible 
+        Dead Reckoning</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\Extraction.jpg">
+    
+    <div class="overlay">
+
+        <h3>Extraction 2</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+<div class="card">
+    <img src="Fotos\Equalizaer.avif">
+    
+    <div class="overlay">
+
+        <h3>The Equalizer III</h3>
+
+        <button class="play-btn">
+            ▶ Reproduzir
+        </button>
+
+    </div>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 StreamFlix - Todos os direitos reservados</p>
+
+</footer>
+
+</body>
+</html>

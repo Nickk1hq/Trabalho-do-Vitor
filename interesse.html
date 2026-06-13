@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interesses da Comunidade | Lumier</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#050505;
+            color:white;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        .navbar{
+
+            height:80px;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:20px;
+
+            border-bottom:1px solid rgba(212,175,55,.2);
+        }
+
+        .logo img{
+            height:60px;
+        }
+
+        .navbar h2{
+            color:#D4AF37;
+        }
+
+        .hero{
+
+            text-align:center;
+
+            padding:100px 20px 60px;
+        }
+
+        .hero h1{
+
+            font-size:3rem;
+
+            color:#D4AF37;
+
+            margin-bottom:15px;
+        }
+
+        .hero p{
+
+            color:#bbb;
+
+            margin-bottom:40px;
+        }
+
+        .search-box{
+
+            display:flex;
+
+            justify-content:center;
+
+            gap:15px;
+
+            flex-wrap:wrap;
+        }
+
+        .search-box input{
+
+            width:500px;
+
+            max-width:90%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:#111;
+
+            color:white;
+        }
+
+        .search-box button{
+
+            padding:18px 30px;
+
+            border:none;
+
+            border-radius:15px;
+
+            cursor:pointer;
+
+            color:white;
+
+            background:
+            linear-gradient(
+                90deg,
+                #8B0000,
+                #D4AF37
+            );
+
+            font-weight:bold;
+        }
+
+        .suggestions{
+
+            width:80%;
+
+            margin:auto;
+
+            padding-bottom:80px;
+        }
+
+        .suggestions h2{
+
+            color:#D4AF37;
+
+            margin-bottom:25px;
+        }
+
+        .movie-item{
+
+            background:#111;
+
+            margin-bottom:15px;
+
+            padding:20px;
+
+            border-radius:15px;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            border-left:
+            4px solid #D4AF37;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            <img src="img/lumier-logo.png">
+        </div>
+
+        <h2>Interesses da Comunidade</h2>
+
+    </header>
+
+    <section class="hero">
+
+        <h1>
+            Qual filme você gostaria de ver na Lumier?
+        </h1>
+
+        <p>
+            Vote em títulos futuros e ajude a construir o catálogo da plataforma.
+        </p>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="movieInput"
+                placeholder="Ex: Duna: Messias">
+
+            <button id="voteBtn">
+
+                <i class="fa-solid fa-star"></i>
+
+                Votar
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <section class="suggestions">
+
+        <h2>Mais desejados pelos usuários</h2>
+
+        <div id="movieList">
+
+            <div class="movie-item">
+                <span>The Batman 2</span>
+                <span>⭐ 324 votos</span>
+            </div>
+
+            <div class="movie-item">
+                <span>Homem-Aranha 4</span>
+                <span>⭐ 298 votos</span>
+            </div>
+
+            <div class="movie-item">
+                <span>Duna: Messias</span>
+                <span>⭐ 256 votos</span>
+            </div>
+
+            <div class="movie-item">
+                <span>Avengers Secret Wars</span>
+                <span>⭐ 221 votos</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <script>
+
+        const button =
+        document.getElementById("voteBtn");
+
+        const input =
+        document.getElementById("movieInput");
+
+        const list =
+        document.getElementById("movieList");
+
+        button.addEventListener("click", () => {
+
+            const movie =
+            input.value.trim();
+
+            if(movie === ""){
+
+                alert("Digite um filme.");
+                return;
+            }
+
+            const item =
+            document.createElement("div");
+
+            item.classList.add("movie-item");
+
+            item.innerHTML = `
+                <span>${movie}</span>
+                <span>⭐ 1 voto</span>
+            `;
+
+            list.prepend(item);
+
+            input.value = "";
+
+        });
+
+    </script>
+
+</body>
+
+</html>

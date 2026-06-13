@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Wick: Ballerina - LUMIER</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:black;
+    color:white;
+    overflow:hidden;
+}
+
+/* TOPO */
+
+header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:10;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 50px;
+}
+
+.logo{
+    color:rgb(255,238,0);
+
+    font-size:35px;
+
+    font-weight:bold;
+
+    text-shadow:
+    0 0 5px rgb(233,250,2),
+    0 0 10px rgb(255,230,0),
+    0 0 20px rgb(175,172,2);
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin-left:25px;
+
+    font-size:18px;
+}
+
+nav a:hover{
+    color:red;
+}
+
+/* BANNER */
+
+.banner{
+
+    position:relative;
+
+    width:100%;
+    height:100vh;
+
+    background-image:url("Fotos\John Wick.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    overflow:hidden;
+    
+}
+.titulo-filme{
+
+    font-family: Arial Black, Gadget, sans-serif;
+
+    font-size: 95px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 12px;
+
+    color: white;
+
+    line-height: 1;
+
+    text-shadow:
+    0 0 20px rgba(255,255,255,.25);
+}
+
+.titulo-filme span{
+
+    display:block;
+
+    font-size: 140px;
+
+    letter-spacing: 18px;
+
+    margin-top:-10px;
+}
+
+/* DEGRADE */
+
+.banner::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    to right,
+    rgba(0,0,0,.95) 20%,
+    rgba(0,0,0,.75) 40%,
+    rgba(0,0,0,.2) 70%,
+    rgba(0,0,0,0)
+    );
+
+    z-index:2;
+}
+
+/* VIDEO */
+.capa{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:1;
+
+    opacity:1;
+
+    transition:opacity 2s ease;
+}
+.trailer{
+
+    opacity:0;
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:1;
+}
+
+/* CONTEUDO */
+
+.conteudo{
+
+    position:relative;
+
+    z-index:5;
+
+    padding-left:70px;
+
+    padding-top:140px;
+
+    max-width:850px;
+
+    transition:opacity 1s ease;
+}
+
+h1{
+
+    font-size:70px;
+
+    margin-bottom:30px;
+}
+
+/* ICONES */
+
+.icones{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.icone{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(255,255,255,.4);
+
+    background:none;
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+}
+
+/* BOTAO */
+
+.assistir{
+
+    background:white;
+
+    color:black;
+
+    border:none;
+
+    padding:18px 60px;
+
+    border-radius:10px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-bottom:30px;
+}
+
+.assistir:hover{
+
+    background:#d6d6d6;
+}
+
+.ranking{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    font-weight:bold;
+}
+
+.alta{
+
+    background:white;
+
+    color:black;
+
+    padding:5px 12px;
+
+    border-radius:5px;
+}
+
+.descricao{
+
+    font-size:23px;
+
+    line-height:1.6;
+
+    margin-bottom:25px;
+}
+
+.info{
+
+    display:flex;
+
+    gap:20px;
+
+    font-size:18px;
+
+    margin-bottom:20px;
+}
+
+.elenco{
+
+    font-size:18px;
+}
+
+/* RODAPE */
+
+.abas{
+
+    transition:opacity 1s ease;
+}
+
+.abas span{
+
+    cursor:pointer;
+}
+
+.abas span:hover{
+
+    color:gold;
+}
+#btnVoltar{
+
+    display:none;
+
+    position:fixed;
+
+    top:20px;
+
+    left:20px;
+
+    z-index:9999;
+
+    padding:10px 20px;
+
+    font-size:16px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:rgba(0,0,0,.8);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="topo">
+
+<div class="logo">
+LUMIER
+</div>
+
+<nav>
+
+<a href="index.html">Início</a>
+<a href="#">Filmes</a>
+<a href="#">Séries</a>
+<a href="#">Documentários</a>
+<a href="#">Ao Vivo</a>
+
+</nav>
+
+</header>
+
+<button id="btnVoltar">
+
+⬅ Voltar
+
+</button>
+
+<section class="banner">
+
+<!-- FOTO QUE APARECE PRIMEIRO -->
+<img src="Fotos/John Wick.jpg" class="capa">
+
+<!-- TRAILER -->
+<video class="trailer" autoplay muted loop playsinline>
+
+<source src="Fotos/WhatsApp Video 2026-06-09 at 19.22.02.mp4" type="video/mp4">
+
+</video>
+
+<div class="conteudo" id="conteudo">
+
+<h1 class="titulo-filme">
+
+JOHN WICK
+
+<span>BALLERINA</span>
+
+</h1>
+
+<div class="icones">
+
+<button class="icone">+</button>
+
+<button class="icone">👍︎</button>
+
+<button class="icone">👎︎</button>
+
+<button class="icone">⤴</button>
+
+</div>
+
+<button class="assistir" id="btnPlay">
+
+▶ Reproduzir
+
+</button>
+
+
+<div class="ranking">
+
+<span class="alta">EM ALTA</span>
+
+<span>Nº 1 em Filmes de Ação</span>
+
+</div>
+
+<p class="descricao">
+
+Ambientado no universo de John Wick, Ballerina acompanha Eve Macarro, uma assassina treinada pela organização Ruska Roma. Após a morte de sua família, ela inicia uma jornada brutal de vingança, enfrentando inimigos perigosos enquanto descobre segredos sobre seu passado.
+
+</p>
+
+<div class="info">
+
+<span>Ação</span>
+
+<span>•</span>
+
+<span>2025</span>
+
+<span>•</span>
+
+<span>2h 05min</span>
+
+</div>
+
+<div class="elenco">
+
+<strong>Elenco:</strong>
+
+Ana de Armas, Keanu Reeves,
+Ian McShane e Anjelica Huston.
+
+</div>
+
+</div>
+
+<div class="abas" id="abas">
+
+<span>Relacionados</span>
+
+<span>Detalhes</span>
+
+<span>Explorar</span>
+
+</div>
+
+
+</section>
+
+<script>
+
+const trailer = document.querySelector(".trailer");
+const capa = document.querySelector(".capa");
+
+const topo = document.getElementById("topo");
+const conteudo = document.getElementById("conteudo");
+const abas = document.getElementById("abas");
+
+const btnPlay = document.getElementById("btnPlay");
+const btnVoltar = document.getElementById("btnVoltar");
+
+let modoCinema = false;
+
+
+
+// MODO CINEMA
+
+btnPlay.addEventListener("click", () => {
+
+    modoCinema = true;
+
+    topo.style.opacity = "0";
+
+    conteudo.style.opacity = "0";
+
+    abas.style.opacity = "0";
+
+    capa.style.opacity = "0";
+
+    trailer.style.opacity = "1";
+
+    trailer.muted = false;
+
+    trailer.play();
+
+    btnVoltar.style.display = "block";
+
+});
+
+
+// VOLTAR
+
+btnVoltar.addEventListener("click", () => {
+
+    modoCinema = false;
+
+    topo.style.opacity = "1";
+
+    conteudo.style.opacity = "1";
+
+    abas.style.opacity = "1";
+
+    capa.style.opacity = "1";
+
+    trailer.pause();
+
+    trailer.style.opacity = "0";
+
+    btnVoltar.style.display = "none";
+
+});
+
+
+// Libera áudio após primeiro clique
+
+document.addEventListener("click", () => {
+
+    trailer.muted = false;
+
+});
+
+</script>
+
+</body>
+</html>
